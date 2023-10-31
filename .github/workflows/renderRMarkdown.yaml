@@ -19,6 +19,7 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: quay.io/bcgsc_pog/nanopore_pog_rmd:latest
+          options: -v ${{ github.workspace }}:/home
           run: |
             echo runningInContainer
             cat src/test.Rmd
