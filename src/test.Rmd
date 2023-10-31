@@ -1,8 +1,11 @@
 ---
 title: "R Notebook"
-output:
-  github_document: default
+output: "github_document"
 ---
+
+```{r}
+library(tidyverse)
+```
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
 
