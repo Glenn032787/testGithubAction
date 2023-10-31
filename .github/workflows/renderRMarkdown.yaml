@@ -1,6 +1,6 @@
-on:
-  push:
-    paths: ['**.Rmd']
+on: push
+#  push:
+#    paths: ['**.Rmd']
 
 name: render-rmarkdown
 
