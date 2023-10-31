@@ -27,9 +27,4 @@ jobs:
       - name: Test file
         run: |
           ls src/*
-      - name: Github commit 
-        run: 
-          git config --local user.name "$GITHUB_ACTOR"
-          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git commit ${RMD_PATH[*]/.Rmd/.md} -m 'Re-build Rmarkdown files' || echo "No changes to commit"
-          git push origin || echo "No changes to commit"
+      - uses: stefanzweifel/git-auto-commit-action@v4
