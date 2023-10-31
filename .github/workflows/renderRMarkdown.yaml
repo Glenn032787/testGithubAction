@@ -19,7 +19,7 @@ jobs:
       - name: Render Rmarkdown files and Commit Results
         uses: addnab/docker-run-action@v3
         with: 
-          image: docker://quay.io/bcgsc_pog/nanopore_pog_rmd:latest
+          image: docker://glenn032787/asesim_rcontainer:2.0
           run: |
             Rscript -e 'for (f in commandArgs(TRUE)) if (file.exists(f)) rmarkdown::render(f)' 'src/test.Rmd' 
       - name: Test file
