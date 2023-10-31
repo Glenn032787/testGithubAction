@@ -21,8 +21,8 @@ jobs:
           image: quay.io/bcgsc_pog/nanopore_pog_rmd:latest
           options: -v ${{ github.workspace }}:/home 
           run: |
-            echo runningInContainer
-            RMD_FILES=$(ls src/*.Rmd)
+            RMD_FILES=$(ls /home/src/*.Rmd)
+            echo $RMD_FILES
             Rscript -e 'for (f in commandArgs(TRUE)) if (file.exists(f)) rmarkdown::render(f)' $RMD_FILES
       - name: Test file
         run: |
