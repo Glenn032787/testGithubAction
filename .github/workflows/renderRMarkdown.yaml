@@ -18,7 +18,7 @@ jobs:
       - name: Run Docker container to compile assets
         uses: addnab/docker-run-action@v3
         with:
-          image: glenn032787/asesim_rcontainer:2.0
+          image: quay.io/bcgsc_pog/nanopore_pog_rmd:latest
           run: |
             Rscript -e 'for (f in commandArgs(TRUE)) if (file.exists(f)) rmarkdown::render(f)' 'src/test.Rmd' 
       - name: Test file
