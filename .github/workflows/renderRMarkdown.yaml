@@ -19,11 +19,11 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: quay.io/bcgsc_pog/nanopore_pog_rmd:latest
-          options: -v ${{ github.workspace }}:/home
+          options: -v ${{ github.workspace }}:/home 
           run: |
             echo runningInContainer
-            cat /home/src/test.Rmd
-            Rscript -e 'for (f in commandArgs(TRUE)) if (file.exists(f)) rmarkdown::render(f)' '/home/src/test.Rmd' 
+            RMD_FILES=$(ls src/*.Rmd)
+            Rscript -e 'for (f in commandArgs(TRUE)) if (file.exists(f)) rmarkdown::render(f)' $RMD_FILES
       - name: Test file
         run: |
           ls src/*
