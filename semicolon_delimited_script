@@ -1,4 +1,5 @@
-RMD_FILES=$( find /home/src -name "*Rmd" |  tr ';' ' ')
+cd /home
+RMD_FILES=$( find . -name "*Rmd" |  tr ';' ' ')
 echo $RMD_FILES
-Rscript -e 'for (f in commandArgs(TRUE)) if (file.exists(f)) rmarkdown::render(f, output_format = "all", output_dir = "/home/output")' $RMD_FILES
+Rscript -e 'for (f in commandArgs(TRUE)) if (file.exists(f)) rmarkdown::render(f, output_format = "all")' $RMD_FILES
 
