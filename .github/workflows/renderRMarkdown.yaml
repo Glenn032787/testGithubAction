@@ -26,7 +26,7 @@ jobs:
             cd /home
             RMD_FILES=$( find . -name "*Rmd" |  tr '\n' ' ')
             echo $RMD_FILES
-            Rscript -e 'for (f in commandArgs(TRUE)) if (file.exists(f)) rmarkdown::render(f, output_format = "all", output_dir = "output")' $RMD_FILES
+            Rscript -e 'for (f in commandArgs(TRUE)) if (file.exists(f)) rmarkdown::render(f, output_format = "all")' $RMD_FILES
       - name: Test file
         run: |
           ls src/*
