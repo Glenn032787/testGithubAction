@@ -1,6 +1,0 @@
-ls
-#cd /home
-#JUPYTER_FILES=$( find . -name "*ipynb" |  tr ';' ' ')
-#echo $RMD_FILES
-#jupyter notebook execute $JUPYTER_FILES
-
