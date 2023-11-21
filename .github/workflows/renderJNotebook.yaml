@@ -7,7 +7,7 @@ on:
 name: render-jnotebook
 
 jobs:
-  render-rmarkdown:
+  render-jupyter-notebook:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -23,6 +23,9 @@ jobs:
           image: quay.io/cdis/jupyter-notebook:latest
           options: -v ${{ github.workspace }}:/home
           run: |
+            ls
+            cd /home
+            ls
             JUPYTER_FILES=$( find . -name "*ipynb" |  tr '\n' ' ')
             echo $JUPYTER_FILES
             jupyter nbconvert --to notebook --inplace --execute $JUPYTER_FILES
