@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [opened, reopened]
 
-name: render-rmarkdown
+name: render-jnotebook
 
 jobs:
   render-rmarkdown:
@@ -20,13 +20,13 @@ jobs:
       - name: Run Docker container to compile assets
         uses: addnab/docker-run-action@v3
         with:
-          image: quay.io/bcgsc_pog/nanopore_pog_rmd:latest
+          image: quay.io/cdis/jupyter-notebook:latest
           options: -v ${{ github.workspace }}:/home
           run: |
             cd /home
-            RMD_FILES=$( find . -name "*Rmd" |  tr '\n' ' ')
+            JUPYTER_FILES=$( find . -name "*ipynb" |  tr '\n' ' ')
             echo $RMD_FILES
-            Rscript -e 'for (f in commandArgs(TRUE)) if (file.exists(f)) rmarkdown::render(f, output_format = "all")' $RMD_FILES
+            jupyter notebook execute $JUPYTER_FILES
       - name: Test file
         run: |
           ls src/*
