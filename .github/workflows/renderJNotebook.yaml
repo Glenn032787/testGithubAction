@@ -23,10 +23,11 @@ jobs:
           image: quay.io/cdis/jupyter-notebook:latest
           options: -v ${{ github.workspace }}:/home
           run: |
-            cd /home
-            JUPYTER_FILES=$( find . -name "*ipynb" |  tr '\n' ' ')
-            echo $RMD_FILES
-            jupyter notebook execute $JUPYTER_FILES
+            ls
+            #cd /home
+            #JUPYTER_FILES=$( find . -name "*ipynb" |  tr '\n' ' ')
+            #echo $RMD_FILES
+            #jupyter notebook execute $JUPYTER_FILES
       - name: Test file
         run: |
           ls src/*
