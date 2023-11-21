@@ -26,7 +26,7 @@ jobs:
             cd /home
             JUPYTER_FILES=$( find . -name "*ipynb" |  tr '\n' ' ')
             echo $JUPYTER_FILES
-            jupyter nbconvert --to notebook --inplace --execute $JUPYTER_FILES --output ../notebook_executed
+            jupyter nbconvert --to notebook --execute $JUPYTER_FILES --output ../notebook_executed
       - name: Test file
         run: |
           ls src/*
