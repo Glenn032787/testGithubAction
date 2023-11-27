@@ -26,3 +26,6 @@ jobs:
       run: |
         docker run --rm -v $GITHUB_WORKSPACE:/workspace notebook-runner bash -c 'find /workspace -name "*.ipynb" -exec jupyter nbconvert --to notebook --execute {} \;'
 
+    - uses: stefanzweifel/git-auto-commit-action@v4
+
+    
