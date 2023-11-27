@@ -16,7 +16,7 @@ jobs:
 
     - name: Build Docker image
       run: docker build -t notebook-runner .
-      working-directory: $GITHUB_WORKSPACE
+      working-directory: .
 
     - name: Run Jupyter Notebooks
       run: |
