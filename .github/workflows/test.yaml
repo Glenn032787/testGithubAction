@@ -14,9 +14,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Build Docker image
-      run: docker build -t notebook-runner .
-      working-directory: .
+     - name: Build and push Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: false  # Set to true if you want to push the image to a registry
+        tags: notebook-runner
 
     - name: Run Jupyter Notebooks
       run: |
