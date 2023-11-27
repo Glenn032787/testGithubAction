@@ -26,7 +26,7 @@ jobs:
       id: find_notebooks
       run: |
         notebooks=$(find . -name "*.ipynb")
-        echo "::set-output name=notebooks::$notebooks"
+        echo "notebooks=$notebooks" >> $GITHUB_OUTPUT
 
     - name: Run Jupyter Notebooks
       run: |
