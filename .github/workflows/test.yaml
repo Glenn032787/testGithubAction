@@ -15,10 +15,10 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Build Docker image
-      run: |
-        docker build -t notebook-runner .
+      run: docker build -t notebook-runner .
+#      working-directory: path/to/your/dockerfile/directory
 
     - name: Run Jupyter Notebooks
       run: |
-        docker run --rm -v $PWD:/workspace notebook-runner
+        docker run --rm -v $GITHUB_WORKSPACE:/workspace notebook-runner bash -c 'find /workspace -name "*.ipynb" -exec jupyter nbconvert --to notebook --execute {} \;'
 
