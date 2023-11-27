@@ -1,0 +1,24 @@
+name: Run Jupyter Notebooks
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+
+jobs:
+  run_notebooks:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build Docker image
+      run: |
+        docker build -t notebook-runner .
+
+    - name: Run Jupyter Notebooks
+      run: |
+        docker run --rm -v $PWD:/workspace notebook-runner
+
