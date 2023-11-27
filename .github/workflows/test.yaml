@@ -30,7 +30,8 @@ jobs:
 
     - name: Run Jupyter Notebooks
       run: |
-        notebooks="$GITHUB_WORKSPACE/${{ steps.find_notebooks.outputs.notebooks }}"
+        notebooks="${{ steps.find_notebooks.outputs.notebooks }}"
+        echo $notebooks
         if [ -n "$notebooks" ]; then
           docker run --rm -u root -v $PWD:/workspace notebook-runner bash -c "find $notebooks -exec jupyter nbconvert --to notebook --execute {} \;"
         else
