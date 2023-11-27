@@ -7,7 +7,7 @@ FROM jupyter/base-notebook
 # RUN pip install -r requirements.txt
 
 RUN pip install pip-install-test
-
+RUN chmod -R 777 ./
 # Set the working directory
 WORKDIR /workspace
 
