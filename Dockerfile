@@ -6,7 +6,7 @@ FROM jupyter/base-notebook
 # For example, if you use Python notebooks, you might want to install additional packages:
 # RUN pip install -r requirements.txt
 
-pip install pip-install-test
+RUN pip install pip-install-test
 
 # Set the working directory
 WORKDIR /workspace
