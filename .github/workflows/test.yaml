@@ -26,9 +26,8 @@ jobs:
     - name: Run Jupyter Notebooks
       run: |
         notebooks=$(find . -name "*.ipynb")
-        echo $notebooks
         if [ -n "$notebooks" ]; then
-          docker run --rm -u root -v $PWD:/workspace notebook-runner bash -c "find $notebooks -exec jupyter nbconvert --to notebook --execute {} \;"
+          docker run --rm -u root -v $PWD:/workspace notebook-runner bash -c "find /workspace -name "*.ipynb" -exec jupyter nbconvert --to notebook --execute {} \;"
         else
           echo "No Jupyter notebooks found. Skipping execution."
         fi
