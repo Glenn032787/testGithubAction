@@ -1,0 +1,42 @@
+# Github action that renders R markdown when PR is opened
+
+on:
+  pull_request:
+    types: [opened, reopened]
+
+name: render-rmarkdown
+
+jobs:
+  render-rmarkdown:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          file: Dockerfile
+          context: ./container
+          push: false  # Set to true if you want to push the image to a registry
+          tags: notebook-runner
+
+      - name: Run Docker container to compile assets
+        uses: addnab/docker-run-action@v3
+        with:
+          image: notebook-runner
+          options: -v ${{ github.workspace }}:/workspace --rm -u root
+          run: |
+            RMD_FILES=$( find . -name "*Rmd" |  tr '\n' ' ')
+            if [ -n "$RMD_FILES" ]; then
+                echo $RMD_FILES
+                Rscript -e 'for (f in commandArgs(TRUE)) if (file.exists(f)) rmarkdown::render(f, output_format = "all")' $RMD_FILES
+            else;
+                echo "No R markdown found. Skipping execution."
+            fi
+      - uses: stefanzweifel/git-auto-commit-action@v4
