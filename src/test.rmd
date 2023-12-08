@@ -1,0 +1,26 @@
+---
+title: "Figure 3C-E generation (ASE)"
+output: github_document
+---
+
+This R markdown is to generate Figure 3C-E relating to allele specific expression (ASE) analysis of Nanopore Long POG cohort. 
+
+
+```{r}
+library(tidyverse)
+library(ggbeeswarm)
+
+```
+
+This chunk is used to import necessary libraries and import ASE summary results. The summary results are generated using the IMPALA pipeline. 
+
+# Figure 3C
+This figure shows the classification of genes in the IMPALA pipeline. Genes are sepperated based on low expression (<1 TPM), fully phased (contained phased SNP), ASE (major expressing allele frequecny ≥ 0.65) and biallelic expression (BAE) gene (major expressing allele frequecny < 0.65).
+
+This chunk obtains the number of expressed, phased, ASE and BAE gene in each sample. This is the preprocessing for figure 3C
+```{r}
+a <- 1:5
+fig <- tibble(a, a * 2)
+fig
+```
+test
