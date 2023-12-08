@@ -5,7 +5,8 @@ FROM jupyter/base-notebook
 # Install any additional dependencies you need
 # For example, if you use Python notebooks, you might want to install additional packages:
 # e.g RUN pip install -r requirements.txt
-# e.g RUN pip install pip-install-test
+RUN pip install numpy==1.26.2
+RUN pip install pip-install-test==0.5
 
 # Change permissions to run jupyter notebook
 RUN chmod -R 777 ./
